@@ -1,3 +1,17 @@
+
 serviceAccount:
-  # Currently we need the default serviceAccount in order to use the pre-bound imagePullSecret
-  create: false
+  create: false  # Currently we need the default serviceAccount in order to use the pre-bound imagePullSecret
+
+ingress:
+  enabled: true
+  annotations:
+    # kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: $PREVIEWHQ_HOSTNAME
+      paths: ["/"]
+  tls:
+    - secretName: tls-$PREVIEWHQ_HOSTNAME
+      commonName: $PREVIEWHQ_HOSTNAME
+      hosts:
+        - $PREVIEWHQ_HOSTNAME
