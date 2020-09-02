@@ -1,0 +1,3 @@
+serviceAccount:
+  # Currently we need the default serviceAccount in order to use the pre-bound imagePullSecret
+  create: false
